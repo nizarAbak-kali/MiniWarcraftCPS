@@ -1,0 +1,120 @@
+service : MoteurJeu
+types : enum RESULTAT{GAGNE, PERDU, EGALITE}, enum COMMANDE{RIEN, DEPLACER, ENTRERMINE, ENTRERHOTELVILLE}
+			enum Side {PLAYER, ENEMY, NONE}, enum Race {HUMAN, ORC}
+
+observators :
+	const largeurTerrain : [MoteurJeu] -> int
+
+	const hauteurTerrain : [MoteurJeu] -> int
+
+	const maxPasJeu : [MoteurJeu] -> int
+
+	pasJeuCourant : [MoteurJeu] -> int
+
+	playerRace : [MoteurJeu] -> Race
+
+	enemyRace : [MoteurJeu] -> Race
+
+	estFini : [MoteurJeu] -> boolean
+
+	resultatFinal : [MoteurJeu] -> RESULTAT
+		pre resultatFinal(M) require estFini(M)
+
+	const numerosVillageois : [MoteurJeu] -> Set<int>
+
+	getVillageois : [MoteurJeu] × int -> Villageois
+		pre getVillageois(M,num) require num ∈ numerosVillageois(M,num)
+
+	positionVillageoisX : [MoteurJeu] × int -> int
+		pre positionVillageoisX(M,num) require num ∈ numerosVillageois(M,num)
+
+	positionVillageoisY : [MoteurJeu] × int -> int
+		pre positionVillageoisY(M,num) require num ∈ numerosVillageois(M,num)
+
+	const numerosMine : [MoteurJeu] -> Set<int>
+
+	getMine : [MoteurJeu] × int -> Mine
+		pre getMine(M,num) require num ∈ numerosMine(M,num)
+
+	const positionMineX : [MoteurJeu] × int -> int
+		pre positionMineX(M,num) require num ∈ numerosMine(M,num)
+
+	const positionMineY : [MoteurJeu] × int -> int
+		pre positionMineY(M,num) require num ∈ numerosMine(M,num)
+
+	const numerosRoute : [MoteurJeu] -> Set<int>
+
+	getRoute : [MoteurJeu] × int -> Route
+		pre getRoute(M,num) require num ∈ numerosRoute(M,num)
+
+	const positionRouteX : [MoteurJeu] × int -> int
+		pre positionRouteX(M,num) require num ∈ numerosRoute(M,num)
+
+	const positionRouteY : [MoteurJeu] × int -> int
+		pre positionRouteY(M,num) require num ∈ numerosRoute(M,num)
+
+	const numerosMuraille : [MoteurJeu] -> Set<int>
+
+	getMuraille : [MoteurJeu] × int -> Muraille
+		pre getMuraille(M,num) require num ∈ numerosMuraille(M,num)
+
+	const positionMurailleX : [MoteurJeu] × int -> int
+		pre positionMurailleX(M,num) require num ∈ numerosMuraille(M,num)
+
+	const positionMurailleY : [MoteurJeu] × int -> int
+		pre positionMurailleY(M,num) require num ∈ numerosMuraille(M,num)
+
+	hotelDeVille : [MoteurJeu] × Side -> HôtelVille
+
+	const positionHotelVilleX : [MoteurJeu] × Side -> int
+
+	const positionHotelVilleY : [MoteurJeu] × Side -> int
+
+	peutEntrer : [MoteurJeu] × int × int -> boolean
+		pre peutEntrer(M,numVillageois,numMine) require numVillageois ∈ numeroesVillageois(M,numVillageois)
+																		∧ numMine ∈ numeroesMine(M,numMine)
+
+	peutEntrerHotelVille : [MoteurJeu] × int -> boolean
+		pre peutEntrerHotelVille(M,numVillageois, s) require numVillageois ∈ numeroesVillageois(M,numVillageois)
+
+Constructors :
+	init : int × int × int × Race × Race -> [MoteurJeu]
+		pre init(largeur,hauteur,maxPas, r1, r2) require largeur≥ 600 ∧ hauteur≥ 400 ∧ maxPas≥ 0
+
+Operators :
+	pasJeu : [MoteurJeu] × COMMANDE × int × int -> [MoteurJeu]
+		pre pasJeu(M, comm, vill, arg) require vill ∈ numeroesVillageois(M) ∧ ¬estFini(M) ∧
+		{
+			comm = DEPLACER ⇒ 0 ≤ arg < 360
+			comm = ENTRERMINE ⇒ arg ∈ numeroesMine(M) ∧ peutEntrer(M, vill, arg)
+			comm = ENTRERHOTELVILLE ⇒ peutEntrerHotelVille(M, vill)
+		}
+
+Observations :
+[invariants]
+	0 ≤ pasJeuCourant(M) ≤ maxPasJeu(M)
+	estFini(M) =(min) HotelVille::orRestant(hotelDeVille(M,PLAYER)) ≥ 1664 ∨ HotelVille::orRestant(hotelDeVille(M, ENEMY)) ≥ 1664 ∨ pasJeuCourant(M)=maxPasJeu(M))
+	resultatFinal(M)=GAGNE ⇔ HotelVille::orRestant(hotelDeVille(M, PLAYER)) ≥ 1664 ∧ HotelVille::orRestant(hotelDeVille(M, ENEMY)) < 1664
+	resultatFinal(M)=PERDU ⇔ HotelVille::orRestant(hotelDeVille(M, ENEMY)) ≥ 1664 ∧ HotelVille::orRestant(hotelDeVille(M, PLAYER)) < 1664
+	resultatFinal(M)=EGALITE ⇔ resultatFinal(M) != PERDU ∧ resultatFinal(M) != GAGNE
+	peutEntrer(M,numVillageois,numMine) =(min) distance(positionVillageoisX(M,numVillageois),positionVillageoisY(M,numVillageois),
+	positionMineX(M,numMine),positionMineY(M,numMine)) ≤ 51
+	peutEntrerHotelVille(M,numVillageois) =(min) distance(positionVillageoisX(M,numVillageois),positionVillageoisY(M,numVillageois), positionHotelVilleX(M, Villageois::side(getVillageois(numVillageois))),positionHotelVilleY(M, Villageois::side(getVillageois(numVillageois)))) ≤ 51 ∧ Villageois::side(getVillageois(numVillageois))
+
+[init]
+	largeurTerrain(init(l,h,m, r1, r2)) = l
+	hauteurTerrain(init(l,h,m, r1, r2)) = h
+	maxPasJeu(init(l,h,m, r1, r2))=m
+	pasJeuCourant(init(l,h,m, r1, r2))=0
+	resultatFinal(init(l,h,m, r1, r2))=EGALITE
+	playerRace(init(l,h,m, r1, r2)) = r1
+	enemyRace(init(l,h,m, r1, r2)) = r2
+	//Les autres observateurs sont initialisées à partir d'un fichier de configuration
+	//On s'assurera tout de même que les deux hotel de ville sont initialisés et qu'il y'ait tout de même
+	//un nombre de villageois au moins égal à 3, et un nombre de mine au moins égal à 3 aussi
+[pasJeu]
+	pasJeuCourant(pasJeu(M,c,numVillageois,arg))=pasJeuCourant(M) +1
+	{
+		c = ENTRERMINE ⇒ ∀ i ∈ numeroesMine(M) / arg , ¬Mine::estAbandonnee(getMine(M, i)) ⇒ Mine::abandoned(getMine(M, i))
+		c != ENTRERMINE ⇒ ∀ i ∈ numeroesMine(M) , ¬Mine::estAbandonnee(getMine(M, i)) ⇒ Mine::abandoned(getMine(M, i))
+	}

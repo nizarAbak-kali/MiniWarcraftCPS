@@ -1,0 +1,31 @@
+service : Terrain
+enum TerrainType{MURAILLE, ROUTE, MINE, HOTELVILLE, NONE}
+
+observators :
+	const largeur : [Terrain] → int
+	const hauteur : [Terrain] → int
+	const type : [Terrain] → TerrainType
+	orRestant  : [Terrain] → int
+	estAbandonnee : [Terrain] -> boolean
+    estLaminee : [Terrain] → boolean
+
+Constructors :
+	init : int × int x int x TerrainType → [Terrain]
+		pre init(largeur,hauteur,orRestant,type) require largeur%2=1 ∧ hauteur%2=1 ∧ orRestant>0 ∧ !(type=null)
+
+Operators :
+	retrait : [Structure] × int → [Structure]
+		pre retrait(S,somme) require ¬estLaminee(H) ∧ somme>0
+
+Observations :
+[init]
+	largeur(init(l,h)) = l
+	hauteur(init(l,h)) = h
+	type(init(l,h)) = NONE
+	orRestant(init(S,orRestant)) = orRestant
+
+[invariants]
+	estLaminee(S) =(min) orRestant(S) ≤ 0
+
+[retrait]
+	orRestant(retrait(S,somme)) = orRestant(S)-somme

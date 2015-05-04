@@ -15,10 +15,16 @@
         <javac includeantruntime="false" debug="true" srcdir="${src}" excludes="" destdir="${build}"/>
     </target>
 
-    <target name="run" depends="compile" description="Run application">
+    <target name="test" depends="compile" description="Run application">
         <echo>================ Run Object Main ================</echo>
+        <echo>================Run sans test</echo>
+        <java classname="test.Test" classpath="${build}/" fork="true"/>
+    </target>
 
-        <java classname="alpha.Main" classpath="${build}/" fork="true"/>
+    <target name="ctest" depends="compile" description="Run application">
+        <echo>================ Run Object Main ================</echo>
+        <echo>================Run avec test</echo>
+        <java classname="test.CTest" classpath="${build}/" fork="true"/>
     </target>
 
     <target name="dist" depends="init,clean" description="Archive">

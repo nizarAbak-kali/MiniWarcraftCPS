@@ -1,0 +1,24 @@
+service : Muraille
+refine : Terrain
+
+observators :
+	pointsRes : [Muraille] -> int
+	estDetruite : [Muraille] -> int
+Constructors :
+	init : int × int × int -> [Muraille]
+		pre init(largeur,hauteur, pointsRes) require largeur%2=1 ∧ hauteur%2=1 ∧ pointsRes>0
+
+Operators :
+	frappee : [Muraille] × int -> [Muraille]
+		pre frappee(M, force) require ¬estDetruite(M) ∧ f >= 0
+
+Observations :
+[invariants]
+	estDetruite(M) =(min) pointsRes(M) ≤ 0
+[init]
+	Terrain.largeur(init(l,h,p))=l
+	Terrain.hauteur(init(l,h,p))=h
+	pointsRes(init(l,h,p))=p
+	Terrain.type(init(l,h))=MURAILLE
+[frappee]
+	pointsRes(frappee(M)) = pointsRes(M) - f
