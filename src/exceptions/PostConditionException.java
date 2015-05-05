@@ -1,6 +1,6 @@
 package exceptions;
 
-public class PostConditionException {
+public class PostConditionException extends Exception{
 	public PostConditionException(String s){
 		System.out.println("s");
 	}
