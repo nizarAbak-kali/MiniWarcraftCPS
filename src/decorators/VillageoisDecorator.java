@@ -1,5 +1,8 @@
 package decorators;
 
+import exceptions.InvariantError;
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
 import services.IVillageoisService;
 
 public class VillageoisDecorator implements IVillageoisService{
@@ -50,22 +53,22 @@ public class VillageoisDecorator implements IVillageoisService{
 	}
 
 	@Override
-	public void init(Race r, Side s, int l, int h, int f, double v, int p) {
+	public void init(Race r, Side s, int l, int h, int f, double v, int p) throws PreConditionException, InvariantError, PostConditionException {
 		delegate.init(r, s, l, h, f, v, p);
 	}
 
 	@Override
-	public void retrait(int s) {
+	public void retrait(int s) throws InvariantError, PreConditionException, PostConditionException {
 		delegate.retrait(s);
 	}
 
 	@Override
-	public void viderPoches() {
+	public void viderPoches() throws InvariantError, PostConditionException {
 		delegate.viderPoches();
 	}
 
 	@Override
-	public void recupere(int s) {
+	public void recupere(int s) throws InvariantError, PreConditionException, PostConditionException {
 		delegate.recupere(s);
 	}
 
