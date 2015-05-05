@@ -1,5 +1,9 @@
 package services;
 
+import exceptions.InvariantError;
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
+
 public interface IVillageoisService {
 	enum Race {HUMAN, ORC}
 	enum Side {PLAYER, ENEMY}
@@ -18,6 +22,9 @@ public interface IVillageoisService {
    	
 	/**
 	 * Constructors
+	 * @throws PreConditionException 
+	 * @throws InvariantError 
+	 * @throws PostConditionException 
 	 */
 	/*pre largeur%2=1 ∧ hauteur%2=1 ∧ force ≥ 0 ∧ vitesse ≥ 0 ∧ pointsDeVie ≥ 0
 	 *post
@@ -30,30 +37,33 @@ public interface IVillageoisService {
 	 *pointsDeVie(init(r,s,l,h,f,v,p))=p
 	 *quantiteOr(init(r,s,l,h,f,v,p))=0
 	 */
-    void init(Race r,Side s,int l,int h,int f,double v,int p);
+    void init(Race r,Side s,int l,int h,int f,double v,int p) throws PreConditionException, InvariantError, PostConditionException;
 	/**
 	 * Operators
+	 * @throws InvariantError 
+	 * @throws PreConditionException 
+	 * @throws PostConditionException 
 	 */
 	/*pre ¬estMort() ∧ s>0
 	 *post
 	 *pointsDeVie(retrait(s))=pointsDeVie() - s
 	 *quantiteOr(retrait(s))=quantiteOr()
 	 */
-	void retrait(int s);
+	void retrait(int s) throws InvariantError, PreConditionException, PostConditionException;
 	
 	/*
 	 * post
 	 * pointsDeVie(viderPoches())=pointsDeVie()
 	 * quantiteOr(viderPoches())=0
 	 */
-	void viderPoches();
+	void viderPoches() throws InvariantError, PostConditionException;
 	
 	/*
 	 * pre s > 0
 	 * pointsDeVie(recupere(s))=pointsDeVie()
 	 * quantiteOr(recupere(s))=quantiteOr()+s
 	 */
-	void recupere(int s);
+	void recupere(int s) throws InvariantError, PreConditionException, PostConditionException;
 
 	/**
 	 * Invariants
