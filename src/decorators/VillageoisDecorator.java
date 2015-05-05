@@ -3,7 +3,7 @@ package decorators;
 import services.IVillageoisService;
 
 public class VillageoisDecorator implements IVillageoisService{
-	private IVillageoisService delegate;
+	protected IVillageoisService delegate;
 	@Override
 	public Race race() {
 		return delegate.race();
