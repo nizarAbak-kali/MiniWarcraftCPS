@@ -11,7 +11,7 @@ Constructors :
 
 Operators :
 	depot : [HotelVille] × int → [HotelVille]
-		pre retrait(H,somme) require somme>0
+		pre depot(H,somme) require somme>0
 
 Observations :
 [init]

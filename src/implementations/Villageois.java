@@ -3,11 +3,12 @@ package implementations;
 ABAK-KALI Nizar
 BAYASSI Majd
 */
-import services.IVillageoisService;
 
-public class Villageois implements IVillageoisService{
-	private Race r;
-	private Side s;
+import services.VillageoisService;
+
+public class Villageois implements VillageoisService {
+    private Race r;
+    private Side s;
 	private int l,h,f,pdv,or;
 	private double v;
 	private boolean estMort;

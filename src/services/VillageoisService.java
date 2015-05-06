@@ -7,9 +7,8 @@ import exceptions.InvariantError;
 import exceptions.PostConditionException;
 import exceptions.PreConditionException;
 
-public interface IVillageoisService {
-	enum Race {HUMAN, ORC}
-	enum Side {PLAYER, ENEMY}
+public interface VillageoisService {
+
 	/**
 	 * Observators
 	 */

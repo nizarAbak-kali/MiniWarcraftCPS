@@ -6,12 +6,13 @@ BAYASSI Majd
 import exceptions.InvariantError;
 import exceptions.PostConditionException;
 import exceptions.PreConditionException;
-import services.IVillageoisService;
+import services.VillageoisService;
 
-public class VillageoisDecorator implements IVillageoisService{
-	protected IVillageoisService delegate;
-	@Override
-	public Race race() {
+public class VillageoisDecorator implements VillageoisService {
+    protected VillageoisService delegate;
+
+    @Override
+    public Race race() {
 		return delegate.race();
 	}
 

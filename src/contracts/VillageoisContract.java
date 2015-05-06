@@ -3,8 +3,6 @@ package contracts;
 ABAK-KALI Nizar
 BAYASSI Majd
 */
-import services.IVillageoisService.Race;
-import services.IVillageoisService.Side;
 import decorators.VillageoisDecorator;
 import exceptions.InvariantError;
 import exceptions.PostConditionException;

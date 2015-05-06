@@ -13,7 +13,7 @@ Constructors :
 
 Operators :
 	acceuil : [Mine] × Side -> [Mine]
-		pre acceuil(M, s) require s = side(M) ∨ s = NONE
+		pre acceuil(M,side)  require ¬abandoned(M) ∧ side != NONE
 	abandoned : [Mine] -> [Mine]
 		pre abandoned(M) require ¬estAbandonnee(M)
 
@@ -21,7 +21,7 @@ Observations :
 [Invariants]
 	estAbandonnee(M) =(min) abandonCompteur = 51
 	0 ≤abandonCompteur(M) ≤ 51
-	side(M) = NONE ⇔ estAbandonnee(M)
+	side(M,S) = NONE ⇔ estAbandonnee(M)
 [init]
 	Terrain::largeur(init(l,h,o)) = l
 	Terrain::hauteur(init(l,h,o)) = h
@@ -40,6 +40,4 @@ Observations :
 [retrait]
 	abandonCompteur(retrait(S,somme)) = abandonCompteur(S)
 	side(Terrain::retrait(M, s)) = side(M)
-
-    Status API Training Shop Blog About
 
