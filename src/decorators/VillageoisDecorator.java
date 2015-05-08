@@ -6,6 +6,8 @@ BAYASSI Majd
 import exceptions.InvariantError;
 import exceptions.PostConditionException;
 import exceptions.PreConditionException;
+import services.Race;
+import services.Side;
 import services.VillageoisService;
 
 public class VillageoisDecorator implements VillageoisService {

@@ -7,6 +7,8 @@ import decorators.VillageoisDecorator;
 import exceptions.InvariantError;
 import exceptions.PostConditionException;
 import exceptions.PreConditionException;
+import services.Race;
+import services.Side;
 
 public class VillageoisContract extends VillageoisDecorator{
 	public VillageoisContract(){

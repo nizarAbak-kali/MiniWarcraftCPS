@@ -4,9 +4,11 @@ ABAK-KALI Nizar
 BAYASSI Majd
 */
 
+import services.Race;
+import services.Side;
 import services.VillageoisService;
 
-public class Villageois implements VillageoisService {
+public class VillageoisImpl implements VillageoisService {
     private Race r;
     private Side s;
 	private int l,h,f,pdv,or;
