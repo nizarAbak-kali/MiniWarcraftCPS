@@ -7,14 +7,31 @@ import services.TerrainType;
 /**
  * Created by nizar on 07/05/15.
  */
-public class MineImpl implements MineService {
-    int abandonCompteur, largeur, hauteur, orRestant;
-    boolean estAbandonnee, estLaminee;
+public class MineImpl extends TerrainImpl implements MineService {
+    int abandonCompteur;
+    boolean estAbandonnee;
     Side side;
+
+    public MineImpl() {
+        super();
+        this.side = Side.NONE;
+        super.t = TerrainType.MINE;
+        this.abandonCompteur = 51;
+    }
+
+    public MineImpl(int largeur, int hauteur, int orRestant) {
+        this.init(largeur, hauteur, orRestant, Side.NONE);
+    }
 
     @Override
     public boolean estAbandonnee() {
-        return this.estAbandonnee;
+        if (this.abandonCompteur() == 51) {
+            this.estAbandonnee = true;
+            return this.estAbandonnee;
+        } else {
+            this.estAbandonnee = false;
+            return this.estAbandonnee;
+        }
     }
 
     @Override
@@ -24,62 +41,34 @@ public class MineImpl implements MineService {
 
     @Override
     public Side side() {
-        return this.side;
+        if (estAbandonnee()) {
+            return Side.NONE;
+        } else {
+            return this.side;
+        }
     }
 
     @Override
     public void init(Integer largeur, Integer hauteur, Integer orRestant, Side side) {
 
+        super.init(largeur, hauteur, orRestant, TerrainType.MINE);
+        this.side = side;
+        super.t = TerrainType.MINE;
+        this.abandonCompteur = 51;
     }
 
-    public void init(Integer largeur, Integer hauteur, Integer orRestant, Side side, TerrainType type) {
-
-
-    }
 
     @Override
     public void acceuil(Side side) {
+        this.abandonCompteur = 0;
 
     }
 
     @Override
     public void abandoned() {
-
+        this.abandonCompteur++;
     }
 
-    @Override
-    public Integer largeur() {
-        return null;
-    }
 
-    @Override
-    public Integer hauteur() {
-        return null;
-    }
-
-    @Override
-    public TerrainType type() {
-        return null;
-    }
-
-    @Override
-    public Integer orRestant() {
-        return null;
-    }
-
-    @Override
-    public boolean estLaminee() {
-        return false;
-    }
-
-    @Override
-    public void init(Integer largeur, Integer hauteur, Integer orRestant, TerrainType type) {
-
-    }
-
-    @Override
-    public void retrait(Integer somme) {
-
-    }
 //tu code si ta pas compris
 }

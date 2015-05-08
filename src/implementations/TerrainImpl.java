@@ -9,8 +9,15 @@ import services.TerrainType;
 public class TerrainImpl implements TerrainService {
     int l, h, o;
     TerrainType t;
-    boolean estLaminee;
+    boolean estLaminee = false;
 
+    public TerrainImpl() {
+        this.init(600, 400, 100, TerrainType.NONE);
+    }
+
+    public TerrainImpl(int largeur, int hauteur, int or, TerrainType t) {
+        this.init(largeur, hauteur, or, t);
+    }
 
     @Override
     public Integer largeur() {

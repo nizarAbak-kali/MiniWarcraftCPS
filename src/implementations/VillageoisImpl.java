@@ -15,6 +15,15 @@ public class VillageoisImpl implements VillageoisService {
 	private double v;
 	private boolean estMort;
 
+    public VillageoisImpl() {
+        this.init(Race.HUMAN, Side.PLAYER, 20, 20, 4, 4, 20);
+    }
+
+    public VillageoisImpl(Race race, Side side, int largeur, int hauteur,
+                          int force, double vitesse, int point) {
+        this.init(race, side, largeur, hauteur, force, vitesse, point);
+    }
+
 	@Override
 	public Race race() {
 		return r;

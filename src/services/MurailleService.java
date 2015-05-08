@@ -9,7 +9,7 @@ public interface MurailleService extends TerrainService {
     /* observators */
     public Integer pointsRes();
 
-    public Integer estDetruite();
+    public boolean estDetruite();
 
     /* Constructors */
     /*
@@ -22,7 +22,7 @@ public interface MurailleService extends TerrainService {
     /*
     *  pre estfrappee(M, force) require ¬estDetruite(M) ∧ f >= 0
     * */
-    public void estfrappee(Integer forrce);
+    public void estfrappee(Integer force);
 
     /* Observations */
      /*

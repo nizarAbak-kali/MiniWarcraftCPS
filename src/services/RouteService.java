@@ -5,13 +5,13 @@ package services;
  */
 public interface RouteService extends TerrainService {
     /* Observators */
-    public Integer facteurMult();
+    public double facteurMult();
 
     /* Constructors */
     /*
     pre init(largeur,hauteur,facteur) require largeur%2=1 ∧ hauteur%2=1 ∧ 0<facteur≤10
      */
-    public void init(Integer largeur, Integer hauteur, Integer facteur);
+    public void init(Integer largeur, Integer hauteur, double facteur);
 
     /* Observations */
     /*
