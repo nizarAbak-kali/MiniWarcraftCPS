@@ -2,6 +2,9 @@ package services;
 
 import java.util.Set;
 
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
+
 /**
  * Created by nizar on 06/05/15.
  */
@@ -25,54 +28,54 @@ public interface MoteurJeuService {
     /*
     * pre resultatFinal(M) require estFini(M)
     * */
-    public Resultat resultatFinal();
+    public Resultat resultatFinal() throws PreConditionException;
 
     public Set<Integer> numerosVillageois();
 
     /*
     * pre getVillageois(M,num) require num ∈ numerosVillageois(M,num)
     * */
-    public VillageoisService getVillageois(Integer num);
+    public VillageoisService getVillageois(Integer num) throws PreConditionException;
 
     //pre positionVillageoisX(M,num) require num ∈ numerosVillageois(M,num)
-    public Integer positionVillageoisX(Integer num);
+    public Integer positionVillageoisX(Integer num) throws PreConditionException;
 
     //pre positionVillageoisY(M,num) require num ∈ numerosVillageois(M,num)
-    public Integer positionVillageoisY(Integer num);
+    public Integer positionVillageoisY(Integer num) throws PreConditionException;
 
     public Set<Integer> numerosMine();
 
     //pre getMine(M,num) require num ∈ numerosMine(M,num)
-    public MineService getMine(Integer num);
+    public MineService getMine(Integer num) throws PreConditionException;
 
     //pre positionMineX(M,num) require num ∈ numerosMine(M,num)
-    public Integer positionMineX(Integer num);
+    public Integer positionMineX(Integer num) throws PreConditionException;
 
     //pre positionMineY(M,num) require num ∈ numerosMine(M,num)
-    public Integer positionMineY(Integer num);
+    public Integer positionMineY(Integer num) throws PreConditionException;
 
 
     public Set<Integer> numerosRoute();
 
     //  pre getRoute(M,num) require num ∈ numerosRoute(M,num)
-    public RouteService getRoute(Integer num);
+    public RouteService getRoute(Integer num) throws PreConditionException;
 
     //pre positionRouteX(M,num) require num ∈ numerosRoute(M,num)
-    public Integer positionRouteX(Integer num);
+    public Integer positionRouteX(Integer num) throws PreConditionException;
 
     // pre positionRouteY(M,num) require num ∈ numerosRoute(M,num)
-    public Integer positionRouteY(Integer num);
+    public Integer positionRouteY(Integer num) throws PreConditionException;
 
     public Set<Integer> numerosMuraille();
 
     //pre getMuraille(M,num) require num ∈ numerosMuraille(M,num)
-    public MurailleService getMuraille(Integer num);
+    public MurailleService getMuraille(Integer num) throws PreConditionException;
 
     //pre positionMurailleX(M,num) require num ∈ numerosMuraille(M,num)
-    public Integer positionMurailleX(Integer num);
+    public Integer positionMurailleX(Integer num) throws PreConditionException;
 
     //pre positionMurailleY(M,num) require num ∈ numerosMuraille(M,num)
-    public Integer positionMurailleY(Integer num);
+    public Integer positionMurailleY(Integer num) throws PreConditionException;
 
     public HotelVilleService hotelDeVille(Side side);
 
@@ -85,21 +88,20 @@ public interface MoteurJeuService {
     *  require numVillageois ∈ numeroesVillageois(M,numVillageois)
         ∧ numMine ∈ numeroesMine(M,numMine)
     * */
-    public boolean peutEntrer(Integer numVillageois, Integer numMine);
+    public boolean peutEntrer(Integer numVillageois, Integer numMine) throws PreConditionException;
 
     /*
     * pre peutEntrerHotelVille(M,numVillageois, s)
     * require numVillageois ∈ numeroesVillageois(M,numVillageois)
     * */
-    public boolean peutEntrerHotelVille(Integer numVillageois, Side side);
+    public boolean peutEntrerHotelVille(Integer numVillageois, Side side) throws PreConditionException;
 
     /* Constructors */
     /*
     * pre init(largeur,hauteur,maxPas, r1, r2) require largeur≥ 600 ∧
      * hauteur≥ 400 ∧ maxPas≥ 0
     */
-
-    public void init(Integer largeur, Integer hauteur, Integer maxpas, Race r1, Race r2);
+    public void init(Integer largeur, Integer hauteur, Integer maxpas, Race r1, Race r2) throws PreConditionException, PostConditionException;
 
 
     /* Opertators */
@@ -112,11 +114,7 @@ public interface MoteurJeuService {
         comm = ENTRERHOTELVILLE ⇒ peutEntrerHotelVille(M, vill)
     }
  */
-    public void pasJeu(Commande com, Integer villageois, Integer arg);
-
-
-    public boolean surRoute(Integer numV);
-
+    public void pasJeu(Commande com, Integer villageois, Integer arg) throws PreConditionException, PostConditionException;
 
      /*
 

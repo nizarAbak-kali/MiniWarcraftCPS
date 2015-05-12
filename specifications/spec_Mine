@@ -19,6 +19,7 @@ Operators :
 
 Observations :
 [Invariants]
+	estLaminee(M) = orRestant(M) ≤ 0
 	estAbandonnee(M) =(min) abandonCompteur = 51
 	0 ≤abandonCompteur(M) ≤ 51
 	side(M,S) = NONE ⇔ estAbandonnee(M)

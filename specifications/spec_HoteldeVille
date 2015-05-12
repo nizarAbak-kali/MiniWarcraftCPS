@@ -14,6 +14,8 @@ Operators :
 		pre depot(H,somme) require somme>0
 
 Observations :
+[invariants]
+	estLaminee(H) = orRestant(H) ≤ 0
 [init]
 	Terrain::largeur(init(l,h,s,o)) = l
 	Terrain::hauteur(init(l,h,s,o)) = h

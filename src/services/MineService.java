@@ -1,5 +1,8 @@
 package services;
 
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
+
 /**
  * Created by nizar on 06/05/15.
  */
@@ -10,30 +13,32 @@ public interface MineService extends TerrainService {
     public Integer abandonCompteur();
 
     // pre side(M) require ¬estAbandonnee(M)
-    public Side side();
+    public Side side() throws PreConditionException;
 
     /* Constructors */
     /* init : int × int × int x SIDE -> [Mine]
        pre init(largeur,hauteur,orRestant,side) require largeur%2=1 ∧ hauteur%2=1 ∧ orRestant>0 ∧ side != null
 
     */
-    public void init(Integer largeur, Integer hauteur, Integer orRestant, Side side);
+    public void init(Integer largeur, Integer hauteur, Integer orRestant, Side side) throws PreConditionException, PostConditionException;
 
     /* Operators */
     /*
     pre  acceuil(M,side) require ¬abandoned(M) ∧ side != NONE
     */
-    public void acceuil(Side side);
+    public void acceuil(Side side) throws PreConditionException, PostConditionException;
 
 
     /*
     pre abandoned(M) require ¬acceuil(M)
     */
-    public void abandoned();
+    public void abandoned() throws PreConditionException, PostConditionException;
 
-
+    public boolean getIsAbandoned();
+	public boolean getIsAccueil();
 
    /* Observations */
+
     /*
    [Invariants]
     estAbandonnee(M) =(min) abandonCompteur = 51
