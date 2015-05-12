@@ -28,7 +28,9 @@ public interface HotelVilleService extends TerrainService {
     /* Observations */
 
     /*
-
+    [invariants]
+	estLaminee(M) = orRestant(M) ≤ 0
+	
     [init]
     Terrain::largeur(init(l,h,s,o)) = l
     Terrain::hauteur(init(l,h,s,o)) = h
