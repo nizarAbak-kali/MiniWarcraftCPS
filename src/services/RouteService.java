@@ -1,5 +1,8 @@
 package services;
 
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
+
 /**
  * Created by nizar on 06/05/15.
  */
@@ -11,7 +14,7 @@ public interface RouteService extends TerrainService {
     /*
     pre init(largeur,hauteur,facteur) require largeur%2=1 ∧ hauteur%2=1 ∧ 0<facteur≤10
      */
-    public void init(Integer largeur, Integer hauteur, double facteur);
+    public void init(Integer largeur, Integer hauteur, double facteur) throws PreConditionException, PostConditionException;
 
     /* Observations */
     /*
