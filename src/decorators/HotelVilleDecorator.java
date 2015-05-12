@@ -34,12 +34,12 @@ public class HotelVilleDecorator implements HotelVilleService{
 	}
 
 	@Override
-	public void init(Integer largeur, Integer hauteur, Integer orRestant,TerrainType type) {
+	public void init(Integer largeur, Integer hauteur, Integer orRestant,TerrainType type) throws PreConditionException, PostConditionException {
 		delegate.init(largeur, hauteur, orRestant, type);
 	}
 
 	@Override
-	public void retrait(Integer somme) {
+	public void retrait(Integer somme) throws PreConditionException, PostConditionException {
 		delegate.retrait(somme);
 	}
 
@@ -54,7 +54,7 @@ public class HotelVilleDecorator implements HotelVilleService{
 	}
 
 	@Override
-	public void depot(Integer somme) throws PreConditionException {
+	public void depot(Integer somme) throws PreConditionException, PostConditionException {
 		delegate.depot(somme);
 	}
 
