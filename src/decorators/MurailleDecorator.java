@@ -1,5 +1,7 @@
 package decorators;
 
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
 import services.MurailleService;
 import services.TerrainType;
 
@@ -32,12 +34,12 @@ public class MurailleDecorator implements MurailleService{
 
 	@Override
 	public void init(Integer largeur, Integer hauteur, Integer orRestant,
-			TerrainType type) {
+			TerrainType type) throws PreConditionException, PostConditionException {
 		delegate.init(largeur, hauteur, orRestant, type);
 	}
 
 	@Override
-	public void retrait(Integer somme) {
+	public void retrait(Integer somme) throws PreConditionException, PostConditionException {
 		delegate.retrait(somme);
 	}
 
@@ -52,12 +54,12 @@ public class MurailleDecorator implements MurailleService{
 	}
 
 	@Override
-	public void init(Integer largeur, Integer hauteur, Integer pointRes) {
+	public void init(Integer largeur, Integer hauteur, Integer pointRes) throws PreConditionException, PostConditionException {
 		delegate.init(largeur, hauteur, pointRes);
 	}
 
 	@Override
-	public void estfrappee(Integer force) {
+	public void estfrappee(Integer force) throws PreConditionException, PostConditionException {
 		delegate.estfrappee(force);
 	}
 }
