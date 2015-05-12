@@ -1,5 +1,7 @@
 package decorators;
 
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
 import services.TerrainService;
 import services.TerrainType;
 
@@ -24,7 +26,7 @@ public class TerrainDecorator implements TerrainService{
 	@Override
 	public Integer orRestant() {
 		return delegate.orRestant();
-	} 
+	}
 
 	@Override
 	public boolean estLaminee() {
@@ -33,12 +35,12 @@ public class TerrainDecorator implements TerrainService{
 
 	@Override
 	public void init(Integer largeur, Integer hauteur, Integer orRestant,
-			TerrainType type) {
+			TerrainType type) throws PreConditionException, PostConditionException {
 		delegate.init(largeur, hauteur, orRestant, type);
 	}
 
 	@Override
-	public void retrait(Integer somme) {
+	public void retrait(Integer somme) throws PreConditionException, PostConditionException {
 		delegate.retrait(somme);
 	}
 
