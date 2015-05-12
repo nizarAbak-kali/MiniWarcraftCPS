@@ -1,0 +1,28 @@
+\part{Introduction}
+
+\section{Enoncé}
+	Ce projet consiste à développer un modèle, simplifié, avec
+test embarqué du mode multi-joueur du jeu Warcraft:
+Orcs and Humans TM , produit par Blizzard en 1994.
+Dans cet épisode de la série, comme dans tout épisode de
+cette série à l’innovation discutable, les joueurs dispensent
+des ordres à gogo à leur chers sujets \− orcs ou humains \−
+en appuyant et déplaçant furieusement leur main sur un
+objet rond à boutons cliquables...
+
+\section{Objectif du projet}
+L’objectif du projet est multiple :
+	\begin{itemize}
+		\item[-] donner une spécification complète du modèle de jeu dans le langage de spécification vu en cours
+		\item[-] réaliser à partir de la spécification une implémentation contractualisée, service et contrat sous
+forme de tests embarqués, en utilisant le langage de votre choix comme par exemple le Java vu en
+TME
+		\item[-] définir à partir de la spécification des objectifs de test pour assurer les couvertures logiques, les paires de transitions, et une suite de scénarios utilisateurs
+		\item[-]	réaliser à partir des objectifs de test une implémentation des cas de tests spécifiés, en Junit par
+exemple
+		\item[-] réaliser deux versions complètes du jeu, dont une totalement “buggée”. Ici, peu importe si les deux
+réalisations sont avec interface graphique ou non. En revanche, elles doivent être en dehors de tout
+modèle du jeu : pas de spécification, pas de contrats, pas de tests MBT
+		 \item[-] recueillir les messages d’erreur lors de la confrontation de la version buggée avec les tests spécifiés.
+	\end{itemize}
+

@@ -1,0 +1,63 @@
+ \documentclass[a4paper,12pt,final]{article}
+\usepackage[english,francais]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage[french]{varioref}
+\usepackage{sidecap}
+\usepackage{array}
+\usepackage{easytable}
+\usepackage{listings}
+\title{Rapport de stage}
+\author{ABAK-KALI Nizar BAYASSI Majd}
+\date{}
+
+\newcommand{\reporttitle}{Rapport de CPS}     % Titre
+\newcommand{\reportauthor}{ABAK-KALI Nizar \\ BAYASSI Majd} % Auteur
+\newcommand{\numetudiant}{3402065 \\3402065}
+\newcommand{\reportsubject}{Implementation d'un warcraft } % Sujet
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\setlength{\parskip}{1ex} % Espace entre les paragraphes
+
+
+
+\hypersetup{
+    pdftitle={\reporttitle},%
+    pdfauthor={\reportauthor},%
+    pdfsubject={\reportsubject},%
+    %pdfkeywords={rapport} {vos} {mots} {clés}
+}
+
+
+\begin{document}
+
+\include{couverture}
+
+\cleardoublepage
+
+\tableofcontents
+\sloppy
+
+\cleardoublepage 
+
+\include{introduction}
+
+\cleardoublepage
+
+\include{organisation}
+
+\cleardoublepage
+
+\include{diagrammes}
+
+\cleardoublepage
+
+\include{experimentation}
+
+\cleardoublepage
+
+\include{conclusion}
+
+\end{document}

@@ -98,6 +98,7 @@ public interface MoteurJeuService {
     * pre init(largeur,hauteur,maxPas, r1, r2) require largeur≥ 600 ∧
      * hauteur≥ 400 ∧ maxPas≥ 0
     */
+
     public void init(Integer largeur, Integer hauteur, Integer maxpas, Race r1, Race r2);
 
 
@@ -112,6 +113,10 @@ public interface MoteurJeuService {
     }
  */
     public void pasJeu(Commande com, Integer villageois, Integer arg);
+
+
+    public boolean surRoute(Integer numV);
+
 
      /*
 

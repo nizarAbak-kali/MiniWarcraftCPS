@@ -1,0 +1,17 @@
+\part{Problème et Solutions}
+
+\section{Elaboration des Services}
+Nous avons créer les services à partir des services donnée dans la correction du premier examen répartie. Bien sur plusieurs modification ont été apporté.
+	\subsection{VillageoisService}
+	Pour ce service nous avons ajouté les opérations "viderPoches" et "recupere".
+	L'opération "viderPoches" a été ajouté afin qu'un villageois puisse vider sa quantité d'or dans l'hotel de ville .\\
+	L'opération "recupere" permet comme son nom l'indique de recuperer des point de vie ainsi que de l'or .
+	
+	\subsection{TerrainService}
+	Ce service a été ajouté afin de factoriser les caractéristiques qu'ont en commun 
+
+\section{Implementation des Services}
+
+\section{Contrats}
+
+\section{Testes}

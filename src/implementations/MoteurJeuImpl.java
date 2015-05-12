@@ -196,13 +196,32 @@ public class MoteurJeuImpl extends TerrainImpl implements MoteurJeuService {
         }
     }
 
+
     @Override
-    public boolean peutEntrer(Integer numVillageois, Integer numMine) {
-        return true;
+    public boolean peutEntrer(Integer numV, Integer numM) {
+        PositionFonction p = new PositionFonction();
+        if (p.distance(positionVillageoisX(numV), positionVillageoisY(numV), positionMineX(numM), positionMineY(numM))
+                <= 51) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean peutEntrerHotelVille(Integer numVillageois, Side side) {
+        return false;
+    }
+
+    @Override
+    public boolean surRoute(Integer numV) {
+        PositionFonction p = new PositionFonction();
+        for (Integer i : numerosRoute()) {
+            if (p.collision(positionVillageoisX(numV), positionVillageoisY(numV),
+                    positionRouteX(i), positionRouteY(i))) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -215,4 +234,5 @@ public class MoteurJeuImpl extends TerrainImpl implements MoteurJeuService {
     public void pasJeu(Commande com, Integer villageois, Integer arg) {
 
     }
+
 }
