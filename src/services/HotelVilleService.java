@@ -26,7 +26,7 @@ public interface HotelVilleService extends TerrainService {
         depot : [HotelVille] × int → [HotelVille]
         pre: depot(H,somme) require somme>0
     */
-    public void depot(Integer somme) throws PreConditionException;
+    public void depot(Integer somme) throws PreConditionException, PostConditionException;
 
     /* Observations */
 
