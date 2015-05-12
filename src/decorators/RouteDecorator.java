@@ -1,5 +1,7 @@
 package decorators;
 
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
 import services.RouteService;
 import services.TerrainType;
 
@@ -32,12 +34,12 @@ public class RouteDecorator implements RouteService{
 
 	@Override
 	public void init(Integer largeur, Integer hauteur, Integer orRestant,
-			TerrainType type) {
+			TerrainType type) throws PreConditionException, PostConditionException {
 		delegate.init(largeur, hauteur, orRestant, type);
 	}
 
 	@Override
-	public void retrait(Integer somme) {
+	public void retrait(Integer somme) throws PreConditionException, PostConditionException {
 		delegate.retrait(somme);
 	}
 
@@ -47,7 +49,7 @@ public class RouteDecorator implements RouteService{
 	}
 
 	@Override
-	public void init(Integer largeur, Integer hauteur, double facteur) {
+	public void init(Integer largeur, Integer hauteur, double facteur) throws PreConditionException, PostConditionException {
 		delegate.init(largeur, hauteur, facteur);
 	}
 	
