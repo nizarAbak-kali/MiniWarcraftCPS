@@ -1,6 +1,7 @@
 package contracts;
 
 import services.Side;
+import services.TerrainType;
 import decorators.HotelVilleDecorator;
 import exceptions.InvariantError;
 import exceptions.PostConditionException;
@@ -57,6 +58,14 @@ public class HotelVilleContract extends HotelVilleDecorator{
 		//Post
 		if(side!=side())
 			throw new PostConditionException("side!");
+		if(largeur!=largeur())
+			throw new PostConditionException("largeur!");
+		if(hauteur!=hauteur())
+			throw new PostConditionException("hauteur");
+		if(type()!=TerrainType.HOTELVILLE)
+			throw new PostConditionException("type!");
+		if(orRestant()!=orRestant)
+			throw new PostConditionException("or!");
     }
 
 
@@ -65,7 +74,7 @@ public class HotelVilleContract extends HotelVilleDecorator{
         depot : [HotelVille] × int → [HotelVille]
         pre: depot(H,somme) require somme>0
     */
-    public void depot(Integer somme) throws PreConditionException{
+    public void depot(Integer somme) throws PreConditionException, PostConditionException{
     	try {
 			checkInvariant();
 		} catch (InvariantError e) {
@@ -74,11 +83,16 @@ public class HotelVilleContract extends HotelVilleDecorator{
     	if(somme<=0)
 			throw new PreConditionException("Somme!");
 		//Op
+    	//Var Post
+    	int or = orRestant();
 		super.depot(somme);
 		//
 		try {
 			checkInvariant();
 		} catch (InvariantError e) {
 		}
+		//Post 
+		if(orRestant() != or + somme)
+			throw new PostConditionException("depot error");
     }
 }
