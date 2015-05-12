@@ -1,5 +1,7 @@
 package decorators;
 
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
 import services.HotelVilleService;
 import services.Side;
 import services.TerrainType;
@@ -47,12 +49,12 @@ public class HotelVilleDecorator implements HotelVilleService{
 	}
 
 	@Override
-	public void init(Integer largeur, Integer hauteur, Side side, Integer orRestant) {
+	public void init(Integer largeur, Integer hauteur, Side side, Integer orRestant) throws PreConditionException, PostConditionException {
 		delegate.init(largeur, hauteur, side, orRestant);
 	}
 
 	@Override
-	public void depot(Integer somme) {
+	public void depot(Integer somme) throws PreConditionException {
 		delegate.depot(somme);
 	}
 
