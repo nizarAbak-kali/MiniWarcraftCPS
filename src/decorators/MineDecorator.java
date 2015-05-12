@@ -1,5 +1,7 @@
 package decorators;
 
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
 import services.MineService;
 import services.Side;
 import services.TerrainType;
@@ -32,12 +34,12 @@ public class MineDecorator implements MineService{
 	}
 
 	@Override
-	public void init(Integer largeur, Integer hauteur, Integer orRestant,TerrainType type) {
+	public void init(Integer largeur, Integer hauteur, Integer orRestant,TerrainType type) throws PreConditionException, PostConditionException {
 		delegate.init(largeur, hauteur, orRestant, type);
 	}
 
 	@Override
-	public void retrait(Integer somme) {
+	public void retrait(Integer somme) throws PreConditionException, PostConditionException {
 		delegate.retrait(somme);
 	}
 
@@ -52,24 +54,36 @@ public class MineDecorator implements MineService{
 	}
 
 	@Override
-	public Side side() {
+	public Side side() throws PreConditionException {
 		return delegate.side();
 	}
 
 	@Override
 	public void init(Integer largeur, Integer hauteur, Integer orRestant,
-			Side side) {
+			Side side) throws PreConditionException, PostConditionException {
 		delegate.init(largeur, hauteur, orRestant, side);		
 	}
 
 	@Override
-	public void acceuil(Side side) {
+	public void acceuil(Side side) throws PreConditionException, PostConditionException {
 		delegate.acceuil(side);
 	}
 
 	@Override
-	public void abandoned() {
+	public void abandoned() throws PreConditionException, PostConditionException {
 		delegate.abandoned();
+	}
+
+	@Override
+	public boolean getIsAbandoned() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean getIsAccueil() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
