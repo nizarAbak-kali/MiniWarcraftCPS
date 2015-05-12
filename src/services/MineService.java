@@ -34,6 +34,7 @@ public interface MineService extends TerrainService {
 
 
    /* Observations */
+
     /*
    [Invariants]
     estAbandonnee(M) =(min) abandonCompteur = 51
