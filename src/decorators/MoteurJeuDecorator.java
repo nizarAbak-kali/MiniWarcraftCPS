@@ -1,178 +1,168 @@
 package decorators;
 
-import java.util.Set;
-
 import exceptions.PostConditionException;
 import exceptions.PreConditionException;
+import services.*;
 
-import services.Commande;
-import services.HotelVilleService;
-import services.MineService;
-import services.MoteurJeuService;
-import services.MurailleService;
-import services.Race;
-import services.Resultat;
-import services.RouteService;
-import services.Side;
-import services.VillageoisService;
+import java.util.Set;
 
-public class MoteurJeuDecorator implements MoteurJeuService{
-	
-	protected MoteurJeuService delegate;
-	
-	@Override
-	public Integer largeurTerrain() {
-		return delegate.largeurTerrain();
-	}
+public class MoteurJeuDecorator implements MoteurJeuService {
 
-	@Override
-	public Integer hauteurTerrain() {
-		return delegate. hauteurTerrain();
-	}
+    protected MoteurJeuService delegate;
 
-	@Override
-	public Integer maxPasJeu() {
-		return delegate.maxPasJeu();
-	}
+    @Override
+    public Integer largeurTerrain() {
+        return delegate.largeurTerrain();
+    }
 
-	@Override
-	public Integer pasJeuCourant() {
-		return delegate.pasJeuCourant();
-	}
+    @Override
+    public Integer hauteurTerrain() {
+        return delegate.hauteurTerrain();
+    }
 
-	@Override
-	public Race playerRace() {
-		return delegate.playerRace();
-	}
+    @Override
+    public Integer maxPasJeu() {
+        return delegate.maxPasJeu();
+    }
 
-	@Override
-	public Race enemyRace() {
-		return delegate.enemyRace();
-	}
+    @Override
+    public Integer pasJeuCourant() {
+        return delegate.pasJeuCourant();
+    }
 
-	@Override
-	public boolean estFini() {
-		return delegate.estFini();
-	}
+    @Override
+    public Race playerRace() {
+        return delegate.playerRace();
+    }
 
-	@Override
-	public Resultat resultatFinal() throws PreConditionException {
-		return delegate.resultatFinal();
-	}
+    @Override
+    public Race enemyRace() {
+        return delegate.enemyRace();
+    }
 
-	@Override
-	public Set<Integer> numerosVillageois() {
-		return delegate.numerosVillageois();
-	}
+    @Override
+    public boolean estFini() {
+        return delegate.estFini();
+    }
 
-	@Override
-	public VillageoisService getVillageois(Integer num) throws PreConditionException {
-		return delegate.getVillageois(num);
-	}
+    @Override
+    public Resultat resultatFinal() throws PreConditionException {
+        return delegate.resultatFinal();
+    }
 
-	@Override
-	public Integer positionVillageoisX(Integer num) throws PreConditionException {
-		return delegate.positionVillageoisX(num);
-	}
+    @Override
+    public Set<Integer> numerosVillageois() {
+        return delegate.numerosVillageois();
+    }
 
-	@Override
-	public Integer positionVillageoisY(Integer num) throws PreConditionException {
-		return delegate.positionVillageoisY(num);
-	}
+    @Override
+    public VillageoisService getVillageois(Integer num) throws PreConditionException {
+        return delegate.getVillageois(num);
+    }
 
-	@Override
-	public Set<Integer> numerosMine() {
-		return delegate.numerosMine();
-	}
+    @Override
+    public Integer positionVillageoisX(Integer num) throws PreConditionException {
+        return delegate.positionVillageoisX(num);
+    }
 
-	@Override
-	public MineService getMine(Integer num) throws PreConditionException {
-		return delegate.getMine(num);
-	}
+    @Override
+    public Integer positionVillageoisY(Integer num) throws PreConditionException {
+        return delegate.positionVillageoisY(num);
+    }
 
-	@Override
-	public Integer positionMineX(Integer num) throws PreConditionException {
-		return delegate.positionMineX(num);
-	}
+    @Override
+    public Set<Integer> numerosMine() {
+        return delegate.numerosMine();
+    }
 
-	@Override
-	public Integer positionMineY(Integer num) throws PreConditionException {
-		return delegate.positionMineY(num);
-	}
+    @Override
+    public MineService getMine(Integer num) throws PreConditionException {
+        return delegate.getMine(num);
+    }
 
-	@Override
-	public Set<Integer> numerosRoute() {
-		return delegate.numerosRoute();
-	}
+    @Override
+    public Integer positionMineX(Integer num) throws PreConditionException {
+        return delegate.positionMineX(num);
+    }
 
-	@Override
-	public RouteService getRoute(Integer num) throws PreConditionException {
-		return delegate.getRoute(num);
-	}
+    @Override
+    public Integer positionMineY(Integer num) throws PreConditionException {
+        return delegate.positionMineY(num);
+    }
 
-	@Override
-	public Integer positionRouteX(Integer num) throws PreConditionException {
-		return delegate.positionRouteX(num);
-	}
+    @Override
+    public Set<Integer> numerosRoute() {
+        return delegate.numerosRoute();
+    }
 
-	@Override
-	public Integer positionRouteY(Integer num) throws PreConditionException {
-		return delegate.positionRouteY(num);
-	}
+    @Override
+    public RouteService getRoute(Integer num) throws PreConditionException {
+        return delegate.getRoute(num);
+    }
 
-	@Override
-	public Set<Integer> numerosMuraille() {
-		return delegate.numerosMuraille();
-	}
+    @Override
+    public Integer positionRouteX(Integer num) throws PreConditionException {
+        return delegate.positionRouteX(num);
+    }
 
-	@Override
-	public MurailleService getMuraille(Integer num) throws PreConditionException {
-		return delegate.getMuraille(num);
-	}
+    @Override
+    public Integer positionRouteY(Integer num) throws PreConditionException {
+        return delegate.positionRouteY(num);
+    }
 
-	@Override
-	public Integer positionMurailleX(Integer num) throws PreConditionException {
-		return delegate.positionMurailleX(num);
-	}
+    @Override
+    public Set<Integer> numerosMuraille() {
+        return delegate.numerosMuraille();
+    }
 
-	@Override
-	public Integer positionMurailleY(Integer num) throws PreConditionException {
-		return delegate.positionMurailleY(num);
-	}
+    @Override
+    public MurailleService getMuraille(Integer num) throws PreConditionException {
+        return delegate.getMuraille(num);
+    }
 
-	@Override
-	public HotelVilleService hotelDeVille(Side side) {
-		return delegate.hotelDeVille(side);
-	}
+    @Override
+    public Integer positionMurailleX(Integer num) throws PreConditionException {
+        return delegate.positionMurailleX(num);
+    }
 
-	@Override
-	public Integer positionHotelVilleX(Side side) {
-		return delegate.positionHotelVilleX(side);
-	}
+    @Override
+    public Integer positionMurailleY(Integer num) throws PreConditionException {
+        return delegate.positionMurailleY(num);
+    }
 
-	@Override
-	public Integer positionHotelVilleY(Side side) {
-		return delegate.positionHotelVilleY(side);
-	}
+    @Override
+    public HotelVilleService hotelDeVille(Side side) {
+        return delegate.hotelDeVille(side);
+    }
 
-	@Override
-	public boolean peutEntrer(Integer numVillageois, Integer numMine) throws PreConditionException {
-		return delegate.peutEntrer(numVillageois, numMine);
-	}
+    @Override
+    public Integer positionHotelVilleX(Side side) {
+        return delegate.positionHotelVilleX(side);
+    }
 
-	@Override
-	public boolean peutEntrerHotelVille(Integer numVillageois, Side side) throws PreConditionException {
-		return delegate.peutEntrerHotelVille(numVillageois, side);
-	}
+    @Override
+    public Integer positionHotelVilleY(Side side) {
+        return delegate.positionHotelVilleY(side);
+    }
 
-	@Override
-	public void init(Integer largeur, Integer hauteur, Integer maxpas, Race r1,Race r2) throws PreConditionException, PostConditionException {
-		delegate.init(largeur, hauteur, maxpas, r1, r2);
-	}
+    @Override
+    public boolean peutEntrer(Integer numVillageois, Integer numMine) throws PreConditionException {
+        return delegate.peutEntrer(numVillageois, numMine);
+    }
 
-	@Override
-	public void pasJeu(Commande com, Integer villageois, Integer arg) throws PreConditionException, PostConditionException {
-		delegate.pasJeu(com, villageois, arg);
-	}
+    @Override
+    public boolean peutEntrerHotelVille(Integer numVillageois, Side side) throws PreConditionException {
+        return delegate.peutEntrerHotelVille(numVillageois, side);
+    }
+
+    @Override
+    public void init(Integer largeur, Integer hauteur, Integer maxpas, Race r1, Race r2) throws PreConditionException, PostConditionException {
+        delegate.init(largeur, hauteur, maxpas, r1, r2);
+    }
+
+    @Override
+    public void pasJeu(Commande com, Integer villageois, Integer arg) throws PreConditionException, PostConditionException {
+        delegate.pasJeu(com, villageois, arg);
+    }
 
 }

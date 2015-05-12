@@ -1,10 +1,10 @@
 package contracts;
 
-import services.TerrainType;
 import decorators.TerrainDecorator;
 import exceptions.InvariantError;
 import exceptions.PostConditionException;
 import exceptions.PreConditionException;
+import services.TerrainType;
 
 public class TerrainContract extends TerrainDecorator{
 	public TerrainContract(){

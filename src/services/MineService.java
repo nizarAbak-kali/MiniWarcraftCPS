@@ -35,7 +35,8 @@ public interface MineService extends TerrainService {
     public void abandoned() throws PreConditionException, PostConditionException;
 
     public boolean getIsAbandoned();
-	public boolean getIsAccueil();
+
+    public boolean getIsAccueil();
 
    /* Observations */
 

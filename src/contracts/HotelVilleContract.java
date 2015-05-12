@@ -1,11 +1,11 @@
 package contracts;
 
-import services.Side;
-import services.TerrainType;
 import decorators.HotelVilleDecorator;
 import exceptions.InvariantError;
 import exceptions.PostConditionException;
 import exceptions.PreConditionException;
+import services.Side;
+import services.TerrainType;
 
 public class HotelVilleContract extends HotelVilleDecorator{
 	

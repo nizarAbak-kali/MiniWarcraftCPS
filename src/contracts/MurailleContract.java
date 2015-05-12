@@ -1,10 +1,10 @@
 package contracts;
 
-import services.TerrainType;
 import decorators.MurailleDecorator;
 import exceptions.InvariantError;
 import exceptions.PostConditionException;
 import exceptions.PreConditionException;
+import services.TerrainType;
 
 public class MurailleContract extends MurailleDecorator{
 	public MurailleContract(){
