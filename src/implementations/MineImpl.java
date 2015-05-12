@@ -69,6 +69,17 @@ public class MineImpl extends TerrainImpl implements MineService {
         this.abandonCompteur++;
     }
 
+	@Override
+	public boolean getIsAbandoned() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-//tu code si ta pas compris
+	@Override
+	public boolean getIsAccueil() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 }
