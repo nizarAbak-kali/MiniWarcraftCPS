@@ -24,7 +24,7 @@ public class TerrainDecorator implements TerrainService{
 	@Override
 	public Integer orRestant() {
 		return delegate.orRestant();
-	}
+	} 
 
 	@Override
 	public boolean estLaminee() {
