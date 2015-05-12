@@ -1,4 +1,8 @@
 package services;
+
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
+
 /*
 ABAK-KALI Nizar
 BAYASSI Majd
@@ -35,7 +39,7 @@ public interface TerrainService {
         * post : orRestant(init(l,h,o,t)) = o
         * post : type(init(l,h,o,t)) = t
      */
-    public void init(Integer largeur, Integer hauteur, Integer orRestant, TerrainType type);
+    public void init(Integer largeur, Integer hauteur, Integer orRestant, TerrainType type) throws PreConditionException, PostConditionException;
 
 
     /* Operators */
@@ -45,7 +49,7 @@ public interface TerrainService {
         * pre : !estLaminee();
         * post : orRestant() == orRestant() - somme
         * */
-    public void retrait(Integer somme);
+    public void retrait(Integer somme) throws PreConditionException, PostConditionException;
 
 
 }
