@@ -1,4 +1,7 @@
-package services; 
+package services;
+
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
 
 /**
  * Created by nizar on 05/05/15.
@@ -15,7 +18,7 @@ public interface HotelVilleService extends TerrainService {
         pre: init(largeur,hauteur,side,orRestant) require largeur%2=1 ∧ hauteur%2=1 ∧ orRestant>0 ∧ side!=NONE
         post side(init(l,h,s,o)) = s
      */
-    public void init(Integer largeur, Integer hauteur, Side side, Integer orRestant);
+    public void init(Integer largeur, Integer hauteur, Side side, Integer orRestant) throws PreConditionException, PostConditionException;
 
 
     /* Operators */
@@ -23,7 +26,7 @@ public interface HotelVilleService extends TerrainService {
         depot : [HotelVille] × int → [HotelVille]
         pre: depot(H,somme) require somme>0
     */
-    public void depot(Integer somme);
+    public void depot(Integer somme) throws PreConditionException;
 
     /* Observations */
 
