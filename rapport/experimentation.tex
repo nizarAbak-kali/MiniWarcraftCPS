@@ -6,14 +6,45 @@ Nous avons créer les services à partir des services donnée dans la correction
 	Pour ce service nous avons ajouté les opérations "viderPoches" et "recupere".
 	L'opération "viderPoches" a été ajouté afin qu'un villageois puisse vider sa quantité d'or dans l'hotel de ville .\\
 	L'opération "recupere" permet comme son nom l'indique de recuperer des point de vie ainsi que de l'or .
+	\subsection{RouteService}
+	Nous avons ajouté à ce service qui permet à un villageois qui "marche dessus" d'aller plus vite . Pour ce faire nous avons ajouté comme propriété un facteur multiplicateur qui multipliera le nombre de pixel que parcours un villageois. 	
 	
 	\subsection{TerrainService}
-	Ce service a été ajouté afin de factoriser les caractéristiques qu'ont en commun les differentes structures du jeux , tel que : les mensurations , la quantité d'or restant , et un booléen pour indiquer si la structures est "laminé".
+	Ce service a été ajouté afin de factoriser les caractéristiques qu'ont en commun les différentes structures du jeux , tel que : les mensurations , la quantité d'or restant , et un booléen pour indiquer si la structures est "laminé". Ce service possède surtout l'opération "retrait" présente dans tout les services .
 	
-	
+\section{Implémentation des Services}
+L’implémentation des services s’était faites de manières naturelle. Certaine modifications notable on tout de même été apporté . La création de la classe "PositionFonction" qui gère tout les calculs de distances et de collision . Une Classe "ObjectPosition"  a aussi été créer afin de facilité la gestion de la position de tout les composant du jeux . Ainsi on peut voir dans le moteur de jeu que la liste des villageois, ainsi que celle des différentes structures est représenté par une hashmap ayant pour couple un entier qui sert d'identifiant à l'objet et d'un "ObjectPosition" .
 
-\section{Implementation des Services}
+\section{Les Decorators}
+Les décorateurs implémentent les services et vont être utilisé dans les contrat . Pour cette partie du projet nous avons fait exactement comme dans lors des travaux pratique , c'est à dire que nous avons créer comme une copie de nos services sur lesquels nous pourrions tester toutes nos préconditions , nos invariants,et finalement nos postconditions ont été respecté .
 
-\section{Contrats}
+\section{Les Contrats}
+Les contrats nous permettent de tester si nos spécification sont respecter par notre projet .
+Voici la description de certain nos contrat .
+\subsection{VillageoisContract}
+Ce contrat contient une méthode "checkInvariant"  qui vas vérifier si tout les invariant spécifié sont respecté. Cette méthode sera ensuite appelé dans avant et après chaque opération pour vérifier que ce qui devait ne pas changer ne change pas .\\
+Pour chaque méthode nous suivant le pattern suivant : on teste les invariants , puis les préconditions , ensuite on applique la méthode hérité du décorateur correspondant , puis on revérifie les invariants et enfin on teste les postconditions .\\
+Voici un exemple :
+\begin{verbatim}
+@Override
+	public void viderPoches() throws InvariantError, PostConditionException {
+		//Check invariants
+		checkInvariant();
+		//Variables pour les post-conditions
+		int oldPdv = pointsDeVie();
+		//Opération
+		super.viderPoches();
+		//Check invariants
+		checkInvariant();
+		//Post
+		if(pointsDeVie()!=oldPdv)
+			throw new PostConditionException("Calcul faux");
+		if(quantiteOr()!=0)
+			throw new PostConditionException("Calcul faux");
+	}
+\end{verbatim}
 
-\section{Testes}
+
+
+\section{Les Testes}
+Les testes sont fait à l'aide de Junit qui contient déjà tout les librairies pour tester les valeur avant (@Before)  et après (@After) chaque opérations . Pour chaque contrat on crée une classe qui contient batterie de test pour chaque opérations .

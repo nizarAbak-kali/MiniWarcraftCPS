@@ -629,7 +629,7 @@ public class MoteurJeuContract extends MoteurJeuDecorator {
                 throw new PreConditionException("");
         }
 
-        if (com == Commande.ENTRERHOTELVILLEs)
+        if (com == Commande.ENTRERHOTELVILLE)
             if (!peutEntrerHotelVille(villageois, Side.PLAYER))
                 throw new PreConditionException("");
         //

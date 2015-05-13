@@ -1,5 +1,6 @@
 package decorators;
 
+import exceptions.InvariantError;
 import exceptions.PostConditionException;
 import exceptions.PreConditionException;
 import services.*;
@@ -161,7 +162,7 @@ public class MoteurJeuDecorator implements MoteurJeuService {
     }
 
     @Override
-    public void pasJeu(Commande com, Integer villageois, Integer arg) throws PreConditionException, PostConditionException {
+    public void pasJeu(Commande com, Integer villageois, Integer arg) throws PreConditionException, PostConditionException, InvariantError {
         delegate.pasJeu(com, villageois, arg);
     }
 

@@ -1,5 +1,8 @@
 package implementations;
 
+import exceptions.InvariantError;
+import exceptions.PostConditionException;
+import exceptions.PreConditionException;
 import services.*;
 
 import java.util.HashMap;
@@ -213,26 +216,87 @@ public class MoteurJeuImpl extends TerrainImpl implements MoteurJeuService {
         return false;
     }
 
-    @Override
-    public boolean surRoute(Integer numV) {
+    public int surRoute(Integer numV) {
         PositionFonction p = new PositionFonction();
+
         for (Integer i : numerosRoute()) {
             if (p.collision(positionVillageoisX(numV), positionVillageoisY(numV),
                     positionRouteX(i), positionRouteY(i))) {
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 
     @Override
     public void init(Integer largeur, Integer hauteur, Integer maxpas, Race r1, Race r2) {
+        super.init(largeur, hauteur, 0, TerrainType.NONE);
+        this.maxPasJ = maxpas;
+        this.prace = r1;
+        this.enrace = r2;
 
     }
 
     @Override
-    public void pasJeu(Commande com, Integer villageois, Integer arg) {
+    public void pasJeu(Commande com, Integer villageois, Integer arg) throws PreConditionException, PostConditionException, InvariantError {
+        pasJeuC++;
+        VillageoisPosition vp = liste_villageois.get(villageois);
+        for (Integer i : numerosMine()) {
+            MineService m = getMine(i);
+            if (!m.estAbandonnee()) {
+                m.abandoned();
+            }
+        }
+        switch (com) {
+            case RIEN:
+                break;
+            case DEPLACER:
+                double f = 1;
+                double angle = Math.toRadians(arg);
 
+                int i = surRoute(villageois);
+                if (i != -1) {
+                    f = getRoute(i).facteurMult();
+                }
+                int newX = (int) (vp.getVillageois().vitesse() * f * Math.cos(angle)) + positionVillageoisX(villageois);
+                int newY = (int) (vp.getVillageois().vitesse() * f * Math.sin(angle)) + positionVillageoisY(villageois);
+                vp.setX(newX);
+                vp.setY(newY);
+                break;
+            case ENTRERMINE:
+                MineService mineToEnter = getMine(arg);
+                if (mineToEnter != null) {
+                    if (peutEntrer(villageois, arg)) {
+                        int retire = 10;
+                        mineToEnter.acceuil(vp.getVillageois().side());
+
+                        if (!mineToEnter.estLaminee()) {
+                            int recupere;
+                            if (mineToEnter.orRestant() < retire) {
+                                recupere = mineToEnter.orRestant();
+                            } else {
+                                recupere = retire;
+                            }
+                            mineToEnter.retrait(recupere);
+                            vp.getVillageois().recupere(recupere);
+                        }
+                    }
+                }
+                break;
+            case ENTRERHOTELVILLE:
+                Side side = getVillageois(villageois).side();
+                if (peutEntrerHotelVille(villageois, getVillageois(villageois).side())) {
+                    hotelDeVille(side).depot(getVillageois(villageois).quantiteOr());
+                    getVillageois(villageois).viderPoches();
+                }
+                break;
+            case FRAPPEMURAILLE:
+                MurailleService murailleToHit = getMuraille(arg);
+                if (murailleToHit != null) {
+                    murailleToHit.estfrappee(getVillageois(villageois).force());
+                }
+                break;
+        }
     }
 
 }

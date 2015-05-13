@@ -1,9 +1,10 @@
 package services;
 
-import java.util.Set;
-
+import exceptions.InvariantError;
 import exceptions.PostConditionException;
 import exceptions.PreConditionException;
+
+import java.util.Set;
 
 /**
  * Created by nizar on 06/05/15.
@@ -114,7 +115,7 @@ public interface MoteurJeuService {
         comm = ENTRERHOTELVILLE ⇒ peutEntrerHotelVille(M, vill)
     }
  */
-    public void pasJeu(Commande com, Integer villageois, Integer arg) throws PreConditionException, PostConditionException;
+    public void pasJeu(Commande com, Integer villageois, Integer arg) throws PreConditionException, PostConditionException, InvariantError;
 
      /*
 
